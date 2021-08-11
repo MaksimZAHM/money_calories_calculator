@@ -3,7 +3,7 @@ import datetime as dt
 
 class Record():
 
-    def __init__(self, amount, comment, date = None):
+    def __init__(self, amount, comment, date=None):
         self.amount = amount
         self.comment = comment
         self.date = date
@@ -36,7 +36,7 @@ class Calculator:
         """Считает статистику за 7 дней."""
         week_amount = 0
         today = dt.datetime.today()
-        week_date_delta = today - dt.timedelta(weeks=1)
+        week_date_delta = today - dt.timedelta(days=7)
         for y in self.records:
             if week_date_delta <= y.date <= today:
                 week_amount += y.amount
