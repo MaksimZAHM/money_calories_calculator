@@ -44,7 +44,7 @@ class Calculator:
 
     def get_balance(self):
         """Считает остаток дневного лимита."""
-        return self.limit - self.get_today_stats()
+        return (self.limit - self.get_today_stats())
 
 
 class CaloriesCalculator(Calculator):
@@ -75,18 +75,18 @@ class CashCalculator(Calculator):
         }
 
         change_rate, short_name = money[currency]
+        rest_of_money = round(self.get_balance/change_rate, 2)
         if currency not in money:
             return ('Валюта не определена')
         else:
             if self.get_balance() > 0:
                 return('На сегодня осталось '
-                       f'{round(self.get_balance/change_rate, 2)}{short_name}')
+                       f'{rest_of_money}{short_name}')
             elif self.get_balance() == 0:
                 return ('Денег нет, держись')
             else:
                 return ('Денег нет, держись: твой долг - '
-                        f'{abs(round(self.get_balance/change_rate, 2))}'
-                        f'{short_name}')
+                        f'{abs(rest_of_money)}{short_name}')
 
 
 # создадим калькулятор денег с дневным лимитом 1000
