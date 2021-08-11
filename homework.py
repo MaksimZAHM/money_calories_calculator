@@ -75,7 +75,7 @@ class CashCalculator(Calculator):
         }
 
         change_rate, short_name = money[currency]
-        rest_of_money = round(self.get_balance/change_rate, 2)
+        rest_of_money = round(self.get_balance / change_rate, 2)
         if currency not in money:
             return ('Валюта не определена')
         else:
