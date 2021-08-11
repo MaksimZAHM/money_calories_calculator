@@ -2,17 +2,17 @@ import datetime as dt
 
 
 class Record():
-    
+
     def __init__(self, amount, comment, date: None):
         self.amount = amount
         self.comment = comment 
-        self.date = date 
-        if date == None:
+        self.date = date
+        if date is None:
             date = dt.datetime.now()
 
 
 class Calculator:
-    
+
     def __init__(self, limit):
         self.limit = limit
         self.records = []
@@ -50,18 +50,18 @@ class CaloriesCalculator(Calculator):
     def get_calories_remained(self):
         """Возвращает совет оринтируясь на остаток дневного лимита."""
         if self.get_balance() > 0:
-            return (f'Сегодня можно сьесть что-нибудь еще, но с общей калорийностью'
-                    f'не более {self.get_balance()} кКал')
+            return ('Сегодня можно сьесть что-нибудь еще, но с общей'
+                    f' калорийностью не более {self.get_balance()} кКал')
         else:
-             return (f'Хватит есть!')
-    
+            return ('Хватит есть!')
+
 
 class CashCalculator(Calculator):
 
     EURO_RATE = 86.50
     USD_RATE = 74.00
     RUB_RATE = 1.00
-    
+
     def get_today_cash_remained(self, currency):
         """Возвращает совет учитывая валюту и курс,
          оринтируясь на остаток дневного лимита.
@@ -72,18 +72,20 @@ class CashCalculator(Calculator):
             'rub': (self.RUB_RATE, 'руб')
         }
 
-        change_rate, short_name = money[currency] 
+        change_rate, short_name = money[currency]
         if currency not in money:
             return ('Валюта не определена')
         else:
             if self.get_balance() > 0:
-                return(f'На сегодня осталось {round(self.get_balance/change_rate, 2)}{short_name}')
+                return('На сегодня осталось '
+                       f'{round(self.get_balance/change_rate, 2)}{short_name}')
             elif self.get_balance() == 0:
                 return ('Денег нет, держись')
             else:
-                return (f'Денег нет, держись: твой долг - {abs(round(self.get_balance/change_rate, 2))}{short_name}')
-        
-            
+                return ('Денег нет, держись: твой долг - '
+                        f'{abs(round(self.get_balance/change_rate, 2))}{short_name}')
+
+
 # создадим калькулятор денег с дневным лимитом 1000
 cash_calculator = CashCalculator(1000)
 
@@ -99,5 +101,3 @@ cash_calculator.add_record(Record(amount=3000,
                                   date='08.11.2019'))
 
 print(cash_calculator.get_today_cash_remained('rub'))
-# должно напечататься
-# На сегодня осталось 555 руб 
