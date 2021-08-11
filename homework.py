@@ -33,13 +33,10 @@ class Calculator:
 
     def get_week_stats(self):
         """Считает статистику за 7 дней."""
-        week_amount = 0
         today = dt.datetime.today()
-        week_date_delta = today - dt.timedelta(days=7)
-        for y in self.records:
-            if week_date_delta <= y.date <= today:
-                week_amount += y.amount
-        return week_amount
+        week_delta = today - dt.timedelta(days=7)
+        return sum(y.amount for y in self.records
+                   if y.date > week_delta and y.date <=today)
 
     def get_balance(self):
         """Считает остаток дневного лимита."""
@@ -49,7 +46,7 @@ class Calculator:
 class CaloriesCalculator(Calculator):
 
     def get_calories_remained(self):
-        """Возвращает совет оринтируясь на остаток дневного лимита."""
+        """Возвращает совет, оринтируясь на остаток дневного лимита."""
         if self.get_balance() > 0:
             return ('Сегодня можно съесть что-нибудь еще, но с общей'
                     f' калорийностью не более {self.get_balance()} кКал')
