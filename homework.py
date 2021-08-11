@@ -6,7 +6,6 @@ class Record():
     def __init__(self, amount, comment, date=None):
         self.amount = amount
         self.comment = comment
-        self.date = date
         if date is None:
             date = dt.datetime.today()
         else:
@@ -25,7 +24,7 @@ class Calculator:
 
     def get_today_stats(self):
         """Считает сегодняшнюю сумму."""
-        day_today = dt.datetime.today
+        day_today = dt.datetime.today()
         day_amount = 0
         for x in self.records:
             if x.date == day_today:
@@ -35,7 +34,7 @@ class Calculator:
     def get_week_stats(self):
         """Считает статистику за 7 дней."""
         week_amount = 0
-        today = dt.datetime.today
+        today = dt.datetime.today()
         week_date_delta = today - dt.timedelta(weeks=1)
         for y in self.records:
             if week_date_delta <= y.date <= today:
@@ -52,7 +51,7 @@ class CaloriesCalculator(Calculator):
     def get_calories_remained(self):
         """Возвращает совет оринтируясь на остаток дневного лимита."""
         if self.get_balance() > 0:
-            return ('Сегодня можно сьесть что-нибудь еще, но с общей'
+            return ('Сегодня можно съесть что-нибудь еще, но с общей'
                     f' калорийностью не более {self.get_balance()} кКал')
         else:
             return ('Хватит есть!')
