@@ -44,7 +44,7 @@ class Calculator:
 
     def get_balance(self):
         """Считает остаток дневного лимита."""
-        return float(self.limit - self.get_today_stats())
+        return self.limit - self.get_today_stats()
 
 
 class CaloriesCalculator(Calculator):
@@ -75,8 +75,8 @@ class CashCalculator(Calculator):
         }
 
         change_rate, short_name = money[currency]
-        today_balance = self.get_balance
-        rest_of_money = round(today_balance / change_rate, 2)
+        todays_balance = self.get_balance()
+        rest_of_money = round(todays_balance / change_rate, 2)
         if currency not in money:
             return ('Валюта не определена')
         else:
