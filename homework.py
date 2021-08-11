@@ -5,7 +5,7 @@ class Record():
 
     def __init__(self, amount, comment, date: None):
         self.amount = amount
-        self.comment = comment 
+        self.comment = comment
         self.date = date
         if date is None:
             date = dt.datetime.now()
@@ -83,7 +83,8 @@ class CashCalculator(Calculator):
                 return ('Денег нет, держись')
             else:
                 return ('Денег нет, держись: твой долг - '
-                        f'{abs(round(self.get_balance/change_rate, 2))}{short_name}')
+                        f'{abs(round(self.get_balance/change_rate, 2))}'
+                        f'{short_name}')
 
 
 # создадим калькулятор денег с дневным лимитом 1000
