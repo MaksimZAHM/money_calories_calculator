@@ -25,7 +25,7 @@ class Calculator:
 
     def get_today_stats(self):
         """Считает сегодняшнюю сумму."""
-        day_today = dt.datetime.today()
+        day_today = dt.datetime.today().date()
         day_amount = 0
         for x in self.records:
             if x.date == day_today:
