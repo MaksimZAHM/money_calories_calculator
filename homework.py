@@ -3,9 +3,10 @@ import datetime as dt
 
 class Record():
 
-    def __init__(self, amount, comment, date=None):
+    def __init__(self, amount, comment, date = None):
         self.amount = amount
         self.comment = comment
+        self.date = date
         if date is None:
             date = dt.datetime.today()
         else:
