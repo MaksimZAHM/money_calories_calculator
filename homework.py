@@ -36,7 +36,7 @@ class Calculator:
         today = dt.datetime.today()
         week_delta = today - dt.timedelta(days=7)
         return sum(y.amount for y in self.records
-                   if y.date > week_delta and y.date <=today)
+                   if y.date > week_delta and y.date <= today)
 
     def get_balance(self):
         """Считает остаток дневного лимита."""
