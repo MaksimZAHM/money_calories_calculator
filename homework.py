@@ -45,7 +45,7 @@ class CaloriesCalculator(Calculator):
         """Возвращает совет, оринтируясь на остаток дневного лимита."""
         today_balance = self.limit - self.get_today_stats()
         if today_balance > 0:
-            return ('Сегодня можно съесть что-нибудь еще, но с общей '
+            return ('Сегодня можно съесть что-нибудь ещё, но с общей '
                     f'калорийностью не более {today_balance} кКал')
         else:
             return ('Хватит есть!')
@@ -75,12 +75,12 @@ class CashCalculator(Calculator):
             rest_of_money = round(today_balance / change_rate, 2)
             if today_balance > 0:
                 return('На сегодня осталось '
-                       f'{rest_of_money}{short_name}')
+                       f'{rest_of_money} {short_name}')
             elif today_balance == 0:
                 return ('Денег нет, держись')
             else:
                 return ('Денег нет, держись: твой долг - '
-                        f'{abs(rest_of_money)}{short_name}')
+                        f'{abs(rest_of_money)} {short_name}')
 
 
 # создадим калькулятор денег с дневным лимитом 1000
