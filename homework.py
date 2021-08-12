@@ -7,9 +7,9 @@ class Record():
         self.amount = amount
         self.comment = comment
         if date is None:
-            date = dt.datetime.today()
+            self.date = dt.datetime.today().date()
         else:
-            date = dt.datetime.strptime(date, '%d.%m.%Y').date()
+            self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
 
 
 class Calculator:
@@ -24,10 +24,10 @@ class Calculator:
 
     def get_today_stats(self):
         """Считает сегодняшнюю сумму."""
-        day_today = dt.datetime.today().date()
+        today = dt.datetime.today().date()
         day_amount = 0
         for x in self.records:
-            if x.date == day_today:
+            if x.date == today:
                 day_amount += x.amount
         return day_amount
 
@@ -55,7 +55,7 @@ class CaloriesCalculator(Calculator):
 
 
 class CashCalculator(Calculator):
-
+    
     EURO_RATE = 86.50
     USD_RATE = 74.00
     RUB_RATE = 1.00
