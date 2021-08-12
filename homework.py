@@ -34,7 +34,7 @@ class Calculator:
     def get_week_stats(self):
         """Считает статистику за 7 дней."""
         today = dt.datetime.today().date()
-        week_delta = today - dt.timedelta(days=7).date()
+        week_delta = today - dt.timedelta(days=7)
         return sum(y.amount for y in self.records
                    if y.date > week_delta and y.date <= today)
 
