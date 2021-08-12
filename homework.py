@@ -55,7 +55,7 @@ class CaloriesCalculator(Calculator):
 
 
 class CashCalculator(Calculator):
-    
+
     EURO_RATE = 86.50
     USD_RATE = 74.00
     RUB_RATE = 1.00
