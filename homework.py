@@ -38,18 +38,15 @@ class Calculator:
         return sum(y.amount for y in self.records
                    if y.date > week_delta and y.date <= today)
 
-    def get_balance(self):
-        """Считает остаток дневного лимита."""
-        return self.limit - self.get_today_stats()
-
 
 class CaloriesCalculator(Calculator):
 
     def get_calories_remained(self):
         """Возвращает совет, оринтируясь на остаток дневного лимита."""
-        if self.get_balance() > 0:
-            return ('Сегодня можно съесть что-нибудь еще, но с общей'
-                    f' калорийностью не более {self.get_balance()} кКал')
+        today_balance = self.limit - self.get_today_stats()
+        if today_balance > 0:
+            return ('Сегодня можно съесть что-нибудь еще, но с общей '
+                    f'калорийностью не более {today_balance} кКал')
         else:
             return ('Хватит есть!')
 
@@ -70,16 +67,16 @@ class CashCalculator(Calculator):
             'rub': (self.RUB_RATE, 'руб')
         }
 
-        change_rate, short_name = money[currency]
-        todays_balance = self.get_balance()
-        rest_of_money = round(todays_balance / change_rate, 2)
         if currency not in money:
             return ('Валюта не определена')
         else:
-            if self.get_balance() > 0:
+            change_rate, short_name = money[currency]
+            today_balance = self.limit - self.get_today_stats()
+            rest_of_money = round(today_balance / change_rate, 2)
+            if today_balance > 0:
                 return('На сегодня осталось '
                        f'{rest_of_money}{short_name}')
-            elif self.get_balance() == 0:
+            elif today_balance == 0:
                 return ('Денег нет, держись')
             else:
                 return ('Денег нет, держись: твой долг - '
