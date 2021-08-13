@@ -2,6 +2,7 @@ import datetime as dt
 
 DATE_FORMAT = '%d.%m.%Y'
 
+
 class Record:
 
     def __init__(self, amount, comment, date=None):
@@ -77,5 +78,4 @@ class CashCalculator(Calculator):
             elif self.get_balance() == 0:
                 return 'Денег нет, держись'
             return ('Денег нет, держись: твой долг - '
-                        f'{abs(rest_of_money)} {short_name}')
-
+                    f'{abs(rest_of_money)} {short_name}')
