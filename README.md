@@ -16,11 +16,11 @@
 - определяет, сколько ещё калорий можно/нужно получить сегодня — метод get_calories_remained()
 - считает количество калорий, полученое за последние 7 дней — метод get_week_stats()
 
-### Запуск проекта 
+## Запуск проекта 
 Клонировать репозиторий и перейти в него в командной строке. Создать и активировать виртуальное окружение c учетом версии Python 3.7:
 
 ```
-git clone https://github.com/Seniacat/money-calories_calculator.git
+git clone https://github.com/MaksimZAHM/money_calories_calculator.git
 ```
 
 Cоздать и активировать виртуальное окружение:
